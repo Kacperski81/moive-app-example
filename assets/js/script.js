@@ -30,12 +30,13 @@ function fetchMovies(event) {
   if (keyCode === 13 && searchText) {
     var matches = [];
 
-    for(var movieObj of movieData) {
-
-        if(movieObj.title.toLowerCase().includes(searchText)) {
-            matches.push(movieObj);
-        }
-    }
+    fetch(`https://www.omdbapi.com/?apikey=d79c0171&t=${searchText}`).then(function (responseObj) {
+        var dataPromise = responseObj.json();
+  
+        dataPromise.then(function (data) {
+          console.log(data);
+        });
+      });
 
     searchInput.value = '';
     displayMatches(matches);
