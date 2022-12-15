@@ -1,0 +1,99 @@
+/* VARIABLES */
+:root {
+    --blue: #048BA8;
+    --orange: #F18F01;
+  }
+  
+  /* RESETS */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html, body {
+    height: 100%;
+  }
+  
+  body {
+    font-family: sans-serif;
+  }
+  
+  /* GLOBAL CLASSES */
+  .text-center {
+    text-align: center;
+  }
+  
+  .row, .column {
+    display: flex;
+  }
+  
+  .column {
+    flex-direction: column;
+  }
+  
+  .justify-center {
+    justify-content: center;
+  }
+  
+  /* CUSTOM STYLES */
+  h1.main-header {
+    margin: 20px 0 25px;
+    color: var(--blue);
+  }
+  
+  input.search {
+    padding: 8px 15px;
+    width: 350px;
+    border-radius: 10px;
+    border: 1px solid var(--blue);
+    outline: none;
+    margin-bottom: 35px;
+    color: #555;
+  }
+  
+  input.search::placeholder {
+    color: var(--blue);
+    text-align: center;
+  }
+  
+  main {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    padding: 0 3%;
+  }
+  
+  main .movie-card {
+    padding: 15px 10px;
+    border: 4px solid var(--blue);
+    border-radius: 4px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: #fff;
+  }
+  
+  main .movie-card > *:not(:last-child) {
+    margin-bottom: 5px;
+  }
+  
+  main p.no-search {
+    grid-column: 1 / 5;
+    color: var(--blue);
+  }
+  
+  main .movie-card h3 {
+    font-size: 1rem;
+  }
+  
+  main .movie-card p {
+    font-size: .9rem;
+  }
+  
+  main .movie-card a {
+    color: var(--orange);
+    font-size: .8rem;
+    text-decoration: none;
+    border-bottom: 1px dashed var(--orange);
+  }
