@@ -38,8 +38,8 @@ function fetchMovies(event) {
     resposePromise
       .then(handleResponse)
       .then(data => 
-        console.log(data));
-      
+        displayMatches(dataSearch));
+        searchInput.value = '';
 
     // searchInput.value = '';
     // displayMatches(matches);
