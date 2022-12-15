@@ -32,7 +32,7 @@ function fetchMovies(event) {
 
     for(var movieObj of movieData) {
 
-        if(movieObj.title.includes(searchText)) {
+        if(movieObj.title.toLowerCase().includes(searchText)) {
             matches.push(movieObj);
         }
     }
