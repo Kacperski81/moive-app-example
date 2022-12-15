@@ -8,18 +8,18 @@ function noMatch() {
 function displayMatches(matches) {
   cardWrapper.innerHTML = '';
 
-  if (!matches.length) {
+  if (!matches) {
     noMatch();
-  }
-
-  for (var matchObj of matches) {
-    cardWrapper.insertAdjacentHTML('beforeend', `
-    <div class="movie-card" style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(${matchObj.Poster});">
-      <h3>${matchObj.Title}</h3>
-      <p>${matchObj.Year}</p>
-      <a href="https://www.imdb.com/title/${matchObj.imdbID}" target="_blank">View More Info Here</a>
-    </div>
-    `);
+  } else {
+    for (var matchObj of matches) {
+      cardWrapper.insertAdjacentHTML('beforeend', `
+      <div class="movie-card" style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(${matchObj.Poster});">
+        <h3>${matchObj.Title}</h3>
+        <p>${matchObj.Year}</p>
+        <a href="https://www.imdb.com/title/${matchObj.imdbID}" target="_blank">View More Info Here</a>
+      </div>
+      `);
+    }
   }
 }
 
@@ -38,12 +38,8 @@ function fetchMovies(event) {
     resposePromise
       .then(handleResponse)
       .then(data => 
-        displayMatches(dataSearch));
+        displayMatches(data.Search));
         searchInput.value = '';
-
-    // searchInput.value = '';
-    // displayMatches(matches);
-
   }
 }
 
