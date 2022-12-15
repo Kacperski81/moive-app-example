@@ -14,10 +14,10 @@ function displayMatches(matches) {
 
   for (var matchObj of matches) {
     cardWrapper.insertAdjacentHTML('beforeend', `
-    <div class="movie-card" style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(${matchObj.movie_image});">
-      <h3>${matchObj.title}</h3>
-      <p>${matchObj.description}</p>
-      <a href="${matchObj.imdb_link}" target="_blank">View More Info Here</a>
+    <div class="movie-card" style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(${matchObj.Poster});">
+      <h3>${matchObj.Title}</h3>
+      <p>${matchObj.Year}</p>
+      <a href="https://www.imdb.com/title/${matchObj.imdbID}" target="_blank">View More Info Here</a>
     </div>
     `);
   }
@@ -28,18 +28,21 @@ function fetchMovies(event) {
   var searchText = searchInput.value.toLowerCase().trim();
 
   if (keyCode === 13 && searchText) {
-    var matches = [];
 
-    fetch(`https://www.omdbapi.com/?apikey=d79c0171&t=${searchText}`).then(function (responseObj) {
-        var dataPromise = responseObj.json();
-  
-        dataPromise.then(function (data) {
-          console.log(data);
-        });
-      });
+    var resposePromise = fetch(`https://www.omdbapi.com/?apikey=d79c0171&s=${searchText}`);
 
-    searchInput.value = '';
-    displayMatches(matches);
+    function handleResponse(responseObject) {
+      return responseObject.json();
+    }
+
+    resposePromise
+      .then(handleResponse)
+      .then(data => 
+        console.log(data));
+      
+
+    // searchInput.value = '';
+    // displayMatches(matches);
 
   }
 }
